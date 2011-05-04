@@ -1,29 +1,3 @@
-/*
-	(c) Copyright 2001  convergence integrated media GmbH.
-	All rights reserved.
-
-	Written by Denis Oliver Kropp <dok@convergence.de> and
-	Andreas Hundt <andi@convergence.de>.
-
-	Updated by Gavin McDonald <gavinmcdoh@gmail.com> to support
-	OpenGL ES.
-
-	This library is free software; you can redistribute it and/or
-	modify it under the terms of the GNU Lesser General Public
-	License as published by the Free Software Foundation; either
-	version 2 of the License, or (at your option) any later version.
-
-	This library is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	Lesser General Public License for more details.
-
-	You should have received a copy of the GNU Lesser General Public
-	License along with this library; if not, write to the
-	Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-	Boston, MA 02111-1307, USA.
-*/
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -75,6 +49,9 @@ static inline unsigned long get_millis()
 }
 
 
+static GLfloat view_x = 0.0, view_y = 0.0, view_z = 0.0;
+static GLfloat inc_x = 0.0, inc_y = 0.0, inc_z = 0.0;
+
 static void draw(void)
 {
 	GLfloat vertices[4][3];
@@ -90,7 +67,7 @@ static void draw(void)
 
 	// Move Left 1.5 Units And Into The Screen 6.0 
 	glLoadIdentity();
-	glTranslatef(-1.5f, 0.0f, -1.0f);
+	glTranslatef((view_x - 1.5f), (view_y + 0.0f), (view_z - 1.0f));
 
 	// Top Of Triangle 
 	vertices[0][0] = 0.0f; vertices[0][1] = 1.0f; vertices[0][2] = 0.0f;
@@ -104,7 +81,7 @@ static void draw(void)
 
 	// Move Right 3 Units 
 	glLoadIdentity();
-	glTranslatef(1.5f, 0.0f, -1.0f);
+	glTranslatef((view_x + 1.5f), (view_y + 0.0f), (view_z - 1.0f));
 
 	// Top Right Of The Quad    
 	vertices[0][0] = 1.0f;  vertices[0][1] = 1.0f;  vertices[0][2] = 0.0f;
@@ -266,22 +243,22 @@ int main(int argc, char *argv[])
 							quit = 1;
 							break;
 						case DIKS_CURSOR_UP:
-// 							inc_rotx = 5.0;
+ 							inc_y = 0.1;
 							break;
 						case DIKS_CURSOR_DOWN:
-//							inc_rotx = -5.0;
+							inc_y = -0.1;
 							break;
 						case DIKS_CURSOR_LEFT:
-//							inc_roty = 5.0;
+							inc_x = -0.1;
 							break;
 						case DIKS_CURSOR_RIGHT:
-//							inc_roty = -5.0;
+							inc_x = 0.1;
 							break;
 						case DIKS_PAGE_UP:
-//							inc_rotz = 5.0;
+							inc_z = 0.01;
 							break;
 						case DIKS_PAGE_DOWN:
-//							inc_rotz = -5.0;
+							inc_z = -0.01;
 							break;
 						default:
 							;
@@ -291,22 +268,22 @@ int main(int argc, char *argv[])
 					switch (evt.key_symbol)
 					{
 						case DIKS_CURSOR_UP:
-//							inc_rotx = 0;
+							inc_y = 0;
 							break;
 						case DIKS_CURSOR_DOWN:
-//							inc_rotx = 0;
+							inc_y = 0;
 							break;
 						case DIKS_CURSOR_LEFT:
-//							inc_roty = 0;
+							inc_x = 0;
 							break;
 						case DIKS_CURSOR_RIGHT:
-//							inc_roty = 0;
+							inc_x = 0;
 							break;
 						case DIKS_PAGE_UP:
-//							inc_rotz = 0;
+							inc_z = 0;
 							break;
 						case DIKS_PAGE_DOWN:
-//							inc_rotz = 0;
+							inc_z = 0;
 							break;
 						default:
 							;
@@ -318,13 +295,13 @@ int main(int argc, char *argv[])
 						switch (evt.axis)
 						{
 							case DIAI_X:
-//								view_roty += evt.axisrel / 2.0;
+								view_x += evt.axisrel / 2.0;
 								break;
 							case DIAI_Y:
-//								view_rotx += evt.axisrel / 2.0;
+								view_y -= evt.axisrel / 2.0;
 								break;
 							case DIAI_Z:
-//								view_rotz += evt.axisrel / 2.0;
+								view_z += evt.axisrel / 2.0;
 								break;
 							default:
 								;
@@ -336,11 +313,9 @@ int main(int argc, char *argv[])
 			}
 		}
 
-//		angle += 2.0;
-
-//		view_rotx += inc_rotx;
-//		view_roty += inc_roty;
-//		view_rotz += inc_rotz;
+		view_x += inc_x;
+		view_y += inc_y;
+		view_z += inc_z;
 	}
 
 	// release our interfaces to shutdown DirectFB

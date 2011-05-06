@@ -289,6 +289,9 @@ static void init(int argc, char *argv[])
 	// Enables Depth Testing
 	glEnable(GL_DEPTH_TEST);
 
+	// only show the front face to fix depth bugs
+	glEnable(GL_CULL_FACE);
+
 	// The Type Of Depth Test To Do
 	glDepthFunc(GL_LEQUAL);
 

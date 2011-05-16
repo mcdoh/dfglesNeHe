@@ -56,7 +56,7 @@ GLfloat xrot;
 GLfloat yrot;
 GLfloat zrot;
 
-GLuint texture[1];
+GLuint texture;
 
 typedef struct
 {
@@ -177,6 +177,7 @@ bool loadBMP(textureImage* texti)
 	// swap red and blue (bgr -> rgb)
 	for (i = 0; i < biSizeImage; i += 3)
 	{
+//		printf("(%d,%d,%d)\n",texti->data[i],texti->data[i+1],texti->data[i+2]);
 		temp = texti->data[i];
 		texti->data[i] = texti->data[i + 2];
 		texti->data[i + 2] = temp;
@@ -196,8 +197,10 @@ void makeTexture(GLuint* texture)
 	{
 		glGenTextures(1, texture);   // create the texture
 		glBindTexture(GL_TEXTURE_2D, *texture);
+
 		// generate the texture
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, texti->width, texti->height, 0, GL_RGB, GL_UNSIGNED_BYTE, texti->data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texti->width, texti->height, 0, GL_RGB, GL_UNSIGNED_BYTE, texti->data);
+
 		// enable linear filtering
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -228,7 +231,7 @@ static void draw(void)
 	glRotatef(zrot, 0.0f, 0.0f, 1.0f); // Rotate On The Z Axis
 
 	// Select Our Texture
-	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	glBindTexture(GL_TEXTURE_2D, texture);
 
 	// Set pointers to vertices and texcoords
 	glVertexPointer(3, GL_FLOAT, 0, vertices);
@@ -360,7 +363,7 @@ static void reshape(int width, int height)
 
 static void init(int argc, char *argv[])
 {
-	makeTexture(texture);
+	makeTexture(&texture);
 
 	// enable texture mapping
 	glEnable(GL_TEXTURE_2D);

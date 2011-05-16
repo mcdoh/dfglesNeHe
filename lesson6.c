@@ -242,13 +242,13 @@ static void draw(void)
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	// Front Face
-	texcoords[0][0]=1.0f; texcoords[0][1]=0.0f;
+	texcoords[0][0]=0.0f; texcoords[0][1]=0.0f;
 	vertices[0][0]=-1.0f; vertices[0][1]=-1.0f; vertices[0][2]=1.0f;
-	texcoords[1][0]=0.0f; texcoords[1][1]=0.0f;
+	texcoords[1][0]=1.0f; texcoords[1][1]=0.0f;
 	vertices[1][0]=1.0f;  vertices[1][1]=-1.0f; vertices[1][2]=1.0f;
-	texcoords[2][0]=0.0f; texcoords[2][1]=1.0f;
+	texcoords[2][0]=1.0f; texcoords[2][1]=1.0f;
 	vertices[2][0]=1.0f;  vertices[2][1]=1.0f; vertices[2][2]=1.0f;
-	texcoords[3][0]=1.0f; texcoords[3][1]=1.0f;
+	texcoords[3][0]=0.0f; texcoords[3][1]=1.0f;
 	vertices[3][0]=-1.0f; vertices[3][1]=1.0f; vertices[3][2]=1.0f;
 
 	// Draw one textured plane using two stripped triangles
@@ -256,13 +256,13 @@ static void draw(void)
 
 	// Back Face
 	// Normal Pointing Away From Viewer
-	texcoords[0][0]=0.0f; texcoords[0][1]=0.0f;
+	texcoords[0][0]=1.0f; texcoords[0][1]=0.0f;
 	vertices[0][0]=-1.0f; vertices[0][1]=-1.0f; vertices[0][2]=-1.0f;
-	texcoords[1][0]=0.0f; texcoords[1][1]=1.0f;
+	texcoords[1][0]=1.0f; texcoords[1][1]=1.0f;
 	vertices[1][0]=-1.0f; vertices[1][1]=1.0f; vertices[1][2]=-1.0f;
-	texcoords[2][0]=1.0f; texcoords[2][1]=1.0f;
+	texcoords[2][0]=0.0f; texcoords[2][1]=1.0f;
 	vertices[2][0]=1.0f;  vertices[2][1]=1.0f; vertices[2][2]=-1.0f;
-	texcoords[3][0]=1.0f; texcoords[3][1]=0.0f;
+	texcoords[3][0]=0.0f; texcoords[3][1]=0.0f;
 	vertices[3][0]=1.0f; vertices[3][1]=-1.0f; vertices[3][2]=-1.0f;
 
 	// Draw one textured plane using two stripped triangles
@@ -271,11 +271,11 @@ static void draw(void)
 	// Top Face
 	texcoords[0][0]=1.0f; texcoords[0][1]=1.0f;
 	vertices[0][0]=-1.0f; vertices[0][1]=1.0f; vertices[0][2]=-1.0f;
-	texcoords[1][0]=1.0f; texcoords[1][1]=0.0f;
+	texcoords[1][0]=0.0f; texcoords[1][1]=1.0f;
 	vertices[1][0]=-1.0f; vertices[1][1]=1.0f; vertices[1][2]=1.0f;
 	texcoords[2][0]=0.0f; texcoords[2][1]=0.0f;
 	vertices[2][0]=1.0f;  vertices[2][1]=1.0f; vertices[2][2]=1.0f;
-	texcoords[3][0]=0.0f; texcoords[3][1]=1.0f;
+	texcoords[3][0]=1.0f; texcoords[3][1]=0.0f;
 	vertices[3][0]=1.0f;  vertices[3][1]=1.0f; vertices[3][2]=-1.0f;
 
 	// Draw one textured plane using two stripped triangles
@@ -284,11 +284,11 @@ static void draw(void)
 	// Bottom Face
 	texcoords[0][0]=0.0f; texcoords[0][1]=1.0f;
 	vertices[0][0]=-1.0f; vertices[0][1]=-1.0f; vertices[0][2]=-1.0f;
-	texcoords[1][0]=1.0f; texcoords[1][1]=1.0f;
+	texcoords[1][0]=0.0f; texcoords[1][1]=0.0f;
 	vertices[1][0]=1.0f;  vertices[1][1]=-1.0f; vertices[1][2]=-1.0f;
 	texcoords[2][0]=1.0f; texcoords[2][1]=0.0f;
 	vertices[2][0]=1.0f;  vertices[2][1]=-1.0f; vertices[2][2]=1.0f;
-	texcoords[3][0]=0.0f; texcoords[3][1]=0.0f;
+	texcoords[3][0]=1.0f; texcoords[3][1]=1.0f;
 	vertices[3][0]=-1.0f; vertices[3][1]=-1.0f; vertices[3][2]=1.0f;
 
 	// Draw one textured plane using two stripped triangles
@@ -297,11 +297,11 @@ static void draw(void)
 	// Right face
 	texcoords[0][0]=0.0f; texcoords[0][1]=0.0f;
 	vertices[0][0]=1.0f;  vertices[0][1]=-1.0f; vertices[0][2]=-1.0f;
-	texcoords[1][0]=0.0f; texcoords[1][1]=1.0f;
+	texcoords[1][0]=1.0f; texcoords[1][1]=0.0f;
 	vertices[1][0]=1.0f;  vertices[1][1]=1.0f; vertices[1][2]=-1.0f;
 	texcoords[2][0]=1.0f; texcoords[2][1]=1.0f;
 	vertices[2][0]=1.0f;  vertices[2][1]=1.0f; vertices[2][2]=1.0f;
-	texcoords[3][0]=1.0f; texcoords[3][1]=0.0f;
+	texcoords[3][0]=0.0f; texcoords[3][1]=1.0f;
 	vertices[3][0]=1.0f;  vertices[3][1]=-1.0f; vertices[3][2]=1.0f;
 
 	// Draw one textured plane using two stripped triangles
@@ -310,11 +310,11 @@ static void draw(void)
 	// Left Face
 	texcoords[0][0]=1.0f; texcoords[0][1]=0.0f;
 	vertices[0][0]=-1.0f; vertices[0][1]=-1.0f; vertices[0][2]=-1.0f;
-	texcoords[1][0]=0.0f; texcoords[1][1]=0.0f;
+	texcoords[1][0]=1.0f; texcoords[1][1]=1.0f;
 	vertices[1][0]=-1.0f; vertices[1][1]=-1.0f; vertices[1][2]=1.0f;
 	texcoords[2][0]=0.0f; texcoords[2][1]=1.0f;
 	vertices[2][0]=-1.0f; vertices[2][1]=1.0f; vertices[2][2]=1.0f;
-	texcoords[3][0]=1.0f; texcoords[3][1]=1.0f;
+	texcoords[3][0]=0.0f; texcoords[3][1]=0.0f;
 	vertices[3][0]=-1.0f; vertices[3][1]=1.0f; vertices[3][2]=-1.0f;
 
 	// Draw one textured plane using two stripped triangles

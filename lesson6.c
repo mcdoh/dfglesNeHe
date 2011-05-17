@@ -49,7 +49,6 @@ static inline unsigned long get_millis()
 }
 
 
-static GLfloat view_x = 0.0, view_y = 0.0, view_z = 0.0;
 static GLfloat inc_x = 0.0, inc_y = 0.0, inc_z = 0.0;
 
 GLfloat xrot;
@@ -328,9 +327,9 @@ static void draw(void)
 	// Flush all drawings
 	glFinish();
 
-	xrot+=0.3f;
-	yrot+=0.2f;
-	zrot+=0.4f;
+	xrot += 0.03f;
+	yrot += 0.02f;
+	zrot += 0.04f;
 }
 
 static void reshape(int width, int height)
@@ -482,22 +481,22 @@ int main(int argc, char *argv[])
 							quit = 1;
 							break;
 						case DIKS_CURSOR_UP:
- 							inc_y = 0.1;
+ 							inc_x = 0.25;
 							break;
 						case DIKS_CURSOR_DOWN:
-							inc_y = -0.1;
+							inc_x = -0.25;
 							break;
 						case DIKS_CURSOR_LEFT:
-							inc_x = -0.1;
+							inc_y = -0.25;
 							break;
 						case DIKS_CURSOR_RIGHT:
-							inc_x = 0.1;
+							inc_y = 0.25;
 							break;
 						case DIKS_PAGE_UP:
-							inc_z = 0.01;
+							inc_z = 0.25;
 							break;
 						case DIKS_PAGE_DOWN:
-							inc_z = -0.01;
+							inc_z = -0.25;
 							break;
 						default:
 							;
@@ -507,16 +506,16 @@ int main(int argc, char *argv[])
 					switch (evt.key_symbol)
 					{
 						case DIKS_CURSOR_UP:
-							inc_y = 0;
+							inc_x = 0;
 							break;
 						case DIKS_CURSOR_DOWN:
-							inc_y = 0;
+							inc_x = 0;
 							break;
 						case DIKS_CURSOR_LEFT:
-							inc_x = 0;
+							inc_y = 0;
 							break;
 						case DIKS_CURSOR_RIGHT:
-							inc_x = 0;
+							inc_y = 0;
 							break;
 						case DIKS_PAGE_UP:
 							inc_z = 0;
@@ -534,13 +533,13 @@ int main(int argc, char *argv[])
 						switch (evt.axis)
 						{
 							case DIAI_X:
-								view_x += evt.axisrel / 2.0;
+								yrot += evt.axisrel / 2.0;
 								break;
 							case DIAI_Y:
-								view_y -= evt.axisrel / 2.0;
+								xrot += evt.axisrel / 2.0;
 								break;
 							case DIAI_Z:
-								view_z += evt.axisrel / 2.0;
+								zrot += evt.axisrel / 2.0;
 								break;
 							default:
 								;
@@ -552,9 +551,9 @@ int main(int argc, char *argv[])
 			}
 		}
 
-		view_x += inc_x;
-		view_y += inc_y;
-		view_z += inc_z;
+		xrot += inc_x;
+		yrot += inc_y;
+		zrot += inc_z;
 	}
 
 	// release our interfaces to shutdown DirectFB
